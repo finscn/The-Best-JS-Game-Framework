@@ -7,7 +7,6 @@
 
     <script src="../src/Game.js"></script>
     <script type="text/javascript">
-
     var game = new Best.Game({
         FPS: 60,
         width: 640,
@@ -17,6 +16,17 @@
             this.canvas.width = this.width;
             this.canvas.height = this.height;
             this.context = this.canvas.getContext("2d");
+
+            this.initEvent();
+        },
+        initEvent: function() {
+            window.addEventListener("keydown", function(event) {
+                KeyState[event.keyCode] = true;
+            }, true);
+
+            window.addEventListener("keyup", function(event) {
+                KeyState[event.keyCode] = false;
+            }, true);
         },
         onStart: function() {
             this.context.font = text.size + "px " + text.font;
@@ -25,6 +35,14 @@
             text.width = this.context.measureText(text.content).width;
             text.x = Math.random() * (this.width - text.width) >> 0;
             text.y = Math.random() * (this.height - text.height) >> 0;
+        },
+        handleInput: function(timeStep, now) {
+            if (KeyState[Key.P]) {
+                this.pause();
+            }
+            if (KeyState[Key.R]) {
+                this.resume();
+            }
         },
         update: function(timeStep, now) {
             text.x += text.moveSpeedX * timeStep;
@@ -44,6 +62,12 @@
         },
     });
 
+    var KeyState = {};
+    var Key = {
+        P: 80,
+        R: 82,
+    };
+
     var text = {
         content: "Hello, World!",
         x: 0,
@@ -61,7 +85,6 @@
         game.start();
 
     };
-
     </script>
 
     <style>
@@ -74,7 +97,7 @@
 <body>
 
     <canvas id="canvas"></canvas>
-
+<pre> press P to pause, R to resume.</pre>
 </body>
 
 </html>

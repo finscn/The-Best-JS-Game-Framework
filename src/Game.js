@@ -62,6 +62,7 @@
             var timeStep = now - this.timer.last;
             this.timer.last = now;
             this.loopId = setTimeout(this._run, this.timer.step);
+            this.handleInput(timeStep, now);
             if (!this.paused && timeStep > 1) {
                 this.update(timeStep, now);
                 this.render(timeStep, now);
@@ -76,7 +77,9 @@
         render: function(timeStep, now) {
             // implement by yourself
         },
-
+        handleInput: function(timeStep, now) {
+            // implement by yourself
+        },
         // some hooks, implement by yourself
         onInit: null,
         onStart: null,
