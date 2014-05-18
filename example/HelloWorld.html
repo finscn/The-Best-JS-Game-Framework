@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Hello World</title>
+
+    <script src="../src/Game.js"></script>
+    <script type="text/javascript">
+
+    var game = new Best.Game({
+        FPS: 60,
+        width: 640,
+        height: 480,
+        onInit: function() {
+            this.canvas = document.getElementById("canvas");
+            this.canvas.width = this.width;
+            this.canvas.height = this.height;
+            this.context = this.canvas.getContext("2d");
+        },
+        onStart: function() {
+            this.context.font = text.size + "px " + text.font;
+            this.context.fillStyle = text.color;
+            text.height = text.size + 2;
+            text.width = this.context.measureText(text.content).width;
+            text.x = Math.random() * (this.width - text.width) >> 0;
+            text.y = Math.random() * (this.height - text.height) >> 0;
+        },
+        update: function(timeStep, now) {
+            text.x += text.moveSpeedX * timeStep;
+            text.y += text.moveSpeedY * timeStep;
+
+            if (text.x + text.width >= this.width && text.moveSpeedX > 0 || text.x < 2 && text.moveSpeedX < 0) {
+                text.moveSpeedX = -text.moveSpeedX;
+            }
+            if (text.y + 1 >= this.height && text.moveSpeedY > 0 || text.y < text.height && text.moveSpeedY < 0) {
+                text.moveSpeedY = -text.moveSpeedY;
+            }
+        },
+        render: function(timeStep, now) {
+            var ctx = this.context;
+            ctx.clearRect(0, 0, this.width, this.height);
+            ctx.fillText(text.content, text.x, text.y);
+        },
+    });
+
+    var text = {
+        content: "Hello, World!",
+        x: 0,
+        y: 0,
+        moveSpeedX: 0.05,
+        moveSpeedY: 0.05,
+        color: "#0000ff",
+        font: "Arial",
+        size: 30
+    }
+
+    window.onload = function() {
+
+        game.init();
+        game.start();
+
+    };
+
+    </script>
+
+    <style>
+    #canvas {
+        border:1px solid black;
+    }
+    </style>
+</head>
+
+<body>
+
+    <canvas id="canvas"></canvas>
+
+</body>
+
+</html>
