@@ -11,11 +11,13 @@
         FPS: 60,
         width: 640,
         height: 480,
-        onInit: function() {
+        caption: '',
+        onInit: function(caption) {
             this.canvas = document.getElementById("canvas");
             this.canvas.width = this.width;
             this.canvas.height = this.height;
             this.context = this.canvas.getContext("2d");
+            this.caption = caption;
 
             this.initEvent();
         },
@@ -58,7 +60,7 @@
         render: function(timeStep, now) {
             var ctx = this.context;
             ctx.clearRect(0, 0, this.width, this.height);
-            ctx.fillText(text.content, text.x, text.y);
+            ctx.fillText(text.content + this.caption, text.x, text.y);
         },
     });
 
@@ -81,7 +83,7 @@
 
     window.onload = function() {
 
-        game.init();
+        game.init('<---');
         game.start();
 
     };

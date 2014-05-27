@@ -25,7 +25,7 @@
                 step: Math.round(1000 / this.FPS)
             };
             if (this.onInit) {
-                this.onInit();
+                this.onInit.apply(this, arguments);
             }
         },
 
