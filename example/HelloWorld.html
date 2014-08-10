@@ -31,55 +31,87 @@
             }, true);
         },
         onStart: function() {
-            this.context.font = text.size + "px " + text.font;
-            this.context.fillStyle = text.color;
-            text.height = text.size + 2;
-            text.width = this.context.measureText(text.content).width;
-            text.x = Math.random() * (this.width - text.width) >> 0;
-            text.y = Math.random() * (this.height - text.height) >> 0;
+            this.scene = this.getScene(0);
+            this.scene.init(this);
+            this.scene.enter();
         },
-        handleInput: function(timeStep, now) {
-            if (KeyState[Key.P]) {
-                this.pause();
-            }
-            if (KeyState[Key.R]) {
-                this.resume();
-            }
-        },
-        update: function(timeStep, now) {
-            text.x += text.moveSpeedX * timeStep;
-            text.y += text.moveSpeedY * timeStep;
 
-            if (text.x + text.width >= this.width && text.moveSpeedX > 0 || text.x < 2 && text.moveSpeedX < 0) {
-                text.moveSpeedX = -text.moveSpeedX;
-            }
-            if (text.y + 1 >= this.height && text.moveSpeedY > 0 || text.y < text.height && text.moveSpeedY < 0) {
-                text.moveSpeedY = -text.moveSpeedY;
-            }
-        },
-        render: function(timeStep, now) {
-            var ctx = this.context;
-            ctx.clearRect(0, 0, this.width, this.height);
-            ctx.fillText(text.content + this.caption, text.x, text.y);
-        },
+        getScene: function(id) {
+            var scene = ScenePool[id];
+            return scene;
+        }
     });
+
+    var ScenePool = {};
+    (function() {
+
+        var scene = new Best.Scene({
+            id: 0,
+            init: function(game) {
+                this.game = game;
+                this.width = game.width;
+                this.height = game.height;
+            },
+
+            enter: function() {
+                var text = this.text = {
+                    content: "Hello, World!",
+                    moveSpeedX: 0.05,
+                    moveSpeedY: 0.05,
+                    color: "#0000ff",
+                    font: "Arial",
+                    size: 30
+                };
+                var context = this.game.context;
+                context.font = text.size + "px " + text.font;
+                context.fillStyle = text.color;
+
+                text.width = context.measureText(text.content).width;
+                text.height = text.size + 2;
+                text.x = Math.random() * (this.width - text.width) >> 0;
+                text.y = Math.random() * (this.height - text.height) >> 0;
+            },
+
+            update: function(timeStep, now) {
+                var text = this.text;
+                text.x += text.moveSpeedX * timeStep;
+                text.y += text.moveSpeedY * timeStep;
+
+                if (text.x + text.width >= this.width && text.moveSpeedX > 0 || text.x < 2 && text.moveSpeedX < 0) {
+                    text.moveSpeedX = -text.moveSpeedX;
+                }
+                if (text.y + 1 >= this.height && text.moveSpeedY > 0 || text.y < text.height && text.moveSpeedY < 0) {
+                    text.moveSpeedY = -text.moveSpeedY;
+                }
+            },
+
+            render: function(context, timeStep, now) {
+                context.clearRect(0, 0, this.game.width, this.game.height);
+                context.fillText(this.text.content + this.game.caption,
+                    this.text.x, this.text.y);
+            },
+
+            handleInput: function(timeStep, now) {
+                if (KeyState[Key.P]) {
+                    this.game.pause();
+                }
+                if (KeyState[Key.R]) {
+                    this.game.resume();
+                }
+            }
+
+        });
+
+        ScenePool[scene.id] = scene;
+    })();
+
+
 
     var KeyState = {};
     var Key = {
         P: 80,
         R: 82,
     };
-
-    var text = {
-        content: "Hello, World!",
-        x: 0,
-        y: 0,
-        moveSpeedX: 0.05,
-        moveSpeedY: 0.05,
-        color: "#0000ff",
-        font: "Arial",
-        size: 30
-    }
 
     window.onload = function() {
 
@@ -91,15 +123,14 @@
 
     <style>
     #canvas {
-        border:1px solid black;
+        border: 1px solid black;
     }
     </style>
 </head>
 
 <body>
-
     <canvas id="canvas"></canvas>
-<pre> press P to pause, R to resume.</pre>
+    <pre> press P to pause, R to resume.</pre>
 </body>
 
 </html>

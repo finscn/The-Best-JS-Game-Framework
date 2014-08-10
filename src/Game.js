@@ -4,6 +4,10 @@
 
     var ns = exports.Best = exports.Best || {};
 
+    /***************************/
+    /********** Game **********/
+    /***************************/
+
     var Game = ns.Game = function(options) {
         for (var p in options) {
             this[p] = options[p]
@@ -39,6 +43,12 @@
             }
             this.run();
         },
+        stop: function() {
+            this.running = false;
+            if (this.onStop) {
+                this.onStop();
+            }
+        },
         pause: function() {
             this.paused = true;
             if (this.onPause) {
@@ -51,12 +61,7 @@
                 this.onResume();
             }
         },
-        stop: function() {
-            this.running = false;
-            if (this.onStop) {
-                this.onStop();
-            }
-        },
+
         run: function() {
             var now = this.timer.now = Date.now();
             var timeStep = now - this.timer.last;
@@ -71,14 +76,29 @@
                 clearTimeout(this.loopId);
             }
         },
+
+        setScene: function(scene) {
+            this.scene = scene;
+            scene.enter();
+        },
+
+        // implement by yourself
         update: function(timeStep, now) {
-            // implement by yourself
+            if (this.scene) {
+                this.scene.update(timeStep, now);
+            }
         },
+        // implement by yourself
         render: function(timeStep, now) {
-            // implement by yourself
+            if (this.scene) {
+                this.scene.render(this.context, timeStep, now);
+            }
         },
+        // implement by yourself
         handleInput: function(timeStep, now) {
-            // implement by yourself
+            if (this.scene) {
+                this.scene.handleInput(timeStep, now);
+            }
         },
         // some hooks, implement by yourself
         onInit: null,
@@ -88,5 +108,61 @@
         onStop: null,
 
     };
+
+
+    /***************************/
+    /********** Scene **********/
+    /***************************/
+
+    var Scene = ns.Scene = function(options) {
+        for (var p in options) {
+            this[p] = options[p]
+        }
+    };
+
+    Scene.prototype = {
+        constructor: Scene,
+        id: null,
+        init: function(game) {
+
+        },
+        enter: function() {
+
+        },
+        leave: function(nextScene) {
+
+        },
+        update: function(timeStep, now) {
+
+        },
+        render: function(context, timeStep, now) {
+
+        }
+    };
+
+
+    function _extend(prototype) {
+        var subclass = function(options) {
+            for (var p in options) {
+                this[p] = options[p];
+            }
+        };
+        var cp = subclass.prototype;
+        var sp = this.prototype;
+        for (var p in sp) {
+            cp[p] = sp[p];
+        }
+        for (var p in prototype) {
+            cp[p] = prototype[p];
+        }
+        cp.constructor = subclass;
+        subclass.$super = sp;
+        subclass.superclass = this;
+        subclass.extend = this.extend;
+        return subclass;
+    }
+
+    Game.extend = _extend;
+    Scene.extend = _extend;
 
 })(this);
