@@ -34,29 +34,35 @@ This is the best javascript game framework on the earth.
 我也在用这个理念做出了一点点东西.
 部分视频:
 
-*Deviant Steel
-<div style="margin:10px"><embed src="http://player.youku.com/player.php/sid/XNzUwNjc2Nzgw/v.swf" allowFullScreen="true" quality="high" width="480" height="400" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>
+Deviant Steel
+<div style="margin:10px">
+<embed src="http://player.youku.com/player.php/sid/XNzUwNjc2Nzgw/v.swf" allowFullScreen="true" quality="high" width="480" height="400" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>
 </div>
 
-*Beside You
-<div style="margin:10px"><embed src="http://player.youku.com/player.php/sid/XNjg2OTIzNTc2/v.swf" allowFullScreen="true" quality="high" width="480" height="400" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>
+Beside You
+<div style="margin:10px">
+<embed src="http://player.youku.com/player.php/sid/XNjg2OTIzNTc2/v.swf" allowFullScreen="true" quality="high" width="480" height="400" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>
 </div>
 
-*COC-like
-<div style="margin:10px"><embed src="http://player.youku.com/player.php/sid/XNzU0MjQ0OTky/v.swf" allowFullScreen="true" quality="high" width="480" height="400" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>
+COC-like
+<div style="margin:10px">
+<embed src="http://player.youku.com/player.php/sid/XNzU0MjQ0OTky/v.swf" allowFullScreen="true" quality="high" width="480" height="400" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>
 </div>
 
-*Tiny Wings
-<div style="margin:10px"><embed src="http://player.youku.com/player.php/sid/XNDMyMTYyOTQ0/v.swf" allowFullScreen="true" quality="high" width="480" height="400" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>
+Tiny Wings
+<div style="margin:10px">
+<embed src="http://player.youku.com/player.php/sid/XNDMyMTYyOTQ0/v.swf" allowFullScreen="true" quality="high" width="480" height="400" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>
 </div>
 
-*Stealth Game
-<div style="margin:10px"><embed src="http://player.youku.com/player.php/sid/XNDEyMzg5NTUy/v.swf" allowFullScreen="true" quality="high" width="480" height="400" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>
+Stealth Game
+<div style="margin:10px">
+<embed src="http://player.youku.com/player.php/sid/XNDEyMzg5NTUy/v.swf" allowFullScreen="true" quality="high" width="480" height="400" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>
 </div>
 
 
-*Platform Game (游戏片段穿插在视频中)
-<div style="margin:10px"><embed src="http://player.youku.com/player.php/sid/XNjUxOTAwNDY0/v.swf" allowFullScreen="true" quality="high" width="480" height="400" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>
+Platform Game (游戏片段穿插在视频中)
+<div style="margin:10px">
+<embed src="http://player.youku.com/player.php/sid/XNjUxOTAwNDY0/v.swf" allowFullScreen="true" quality="high" width="480" height="400" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>
 </div>
 
 (还有很多游戏, 就不一一列列出了)
