@@ -3,7 +3,6 @@
 (function(exports, undefined) {
 
     var ns = exports.Best = exports.Best || {};
-
     /***************************/
     /********** Game **********/
     /***************************/
@@ -140,29 +139,37 @@
         }
     };
 
-
-    function _extend(prototype) {
+    ns.extend = function(prototype, superclass) {
         var subclass = function(options) {
             for (var p in options) {
                 this[p] = options[p];
             }
         };
-        var cp = subclass.prototype;
-        var sp = this.prototype;
-        for (var p in sp) {
-            cp[p] = sp[p];
+        var cp = subclass.prototype,
+            sp;
+        if (superclass) {
+            sp = superclass.prototype;
+            for (var p in sp) {
+                cp[p] = sp[p];
+            }
         }
         for (var p in prototype) {
             cp[p] = prototype[p];
         }
         cp.constructor = subclass;
         subclass.$super = sp;
-        subclass.superclass = this;
+        subclass.superclass = superclass||null;
         subclass.extend = this.extend;
         return subclass;
     }
+
+    function _extend(prototype){
+        return ns.extend(prototype,this)
+    };
 
     Game.extend = _extend;
     Scene.extend = _extend;
 
 })(this);
+
+
