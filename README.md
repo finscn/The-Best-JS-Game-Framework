@@ -38,8 +38,6 @@ This is the best javascript game framework on the earth.
 
 http://v.youku.com/v_show/id_XNzUwNjc2Nzgw.html
 
-<iframe height=498 width=510 src="http://player.youku.com/embed/XNzUwNjc2Nzgw" frameborder=0 allowfullscreen></iframe>
-
 
 * Beside You
 
@@ -63,7 +61,6 @@ http://v.youku.com/v_show/id_XNDEyMzg5NTUy.html
 
 
 * Platform Game (游戏片段穿插在视频中)
-
 http://v.youku.com/v_show/id_XNjUxOTAwNDY0.html
 
 
@@ -103,6 +100,7 @@ Sprite.js
 TileMap.js
 TimeQueue.js
 Tween.js
+... ...
 ```
 
 但是，这些东西都是彼此独立的，都是和框架无关的。而且开发者可以随意替换成自己用着顺手的类似工具。
