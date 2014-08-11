@@ -12,13 +12,15 @@
         width: 640,
         height: 480,
         caption: '',
-        onInit: function(caption) {
+
+        initGraphicContext: function(caption) {
             this.canvas = document.getElementById("canvas");
             this.canvas.width = this.width;
             this.canvas.height = this.height;
             this.context = this.canvas.getContext("2d");
-            this.caption = caption;
-
+        },
+        onInit: function(caption) {
+            this.caption = caption||this.caption;
             this.initEvent();
         },
         initEvent: function() {

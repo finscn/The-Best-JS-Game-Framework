@@ -15,8 +15,14 @@
 
     Game.prototype = {
         constructor: Game,
+
         id: null,
+        width: 600,
+        height: 400,
         FPS: 60,
+        caption: '',
+        context: null, // graphic-context
+
         init: function() {
             var Me = this;
             this._run = function() {
@@ -27,9 +33,17 @@
                 last: 0,
                 step: Math.round(1000 / this.FPS)
             };
+
+            this.initGraphicContext();
+
             if (this.onInit) {
                 this.onInit.apply(this, arguments);
             }
+        },
+
+        // implement by yourself
+        initGraphicContext: function() {
+
         },
 
         start: function() {
@@ -81,19 +95,18 @@
             scene.enter();
         },
 
-        // implement by yourself
         update: function(timeStep, now) {
             if (this.scene) {
                 this.scene.update(timeStep, now);
             }
         },
-        // implement by yourself
+
         render: function(timeStep, now) {
             if (this.scene) {
                 this.scene.render(this.context, timeStep, now);
             }
         },
-        // implement by yourself
+
         handleInput: function(timeStep, now) {
             if (this.scene) {
                 this.scene.handleInput(timeStep, now);
@@ -158,18 +171,16 @@
         }
         cp.constructor = subclass;
         subclass.$super = sp;
-        subclass.superclass = superclass||null;
+        subclass.superclass = superclass || null;
         subclass.extend = this.extend;
         return subclass;
     }
 
-    function _extend(prototype){
-        return ns.extend(prototype,this)
+    function _extend(prototype) {
+        return ns.extend(prototype, this)
     };
 
     Game.extend = _extend;
     Scene.extend = _extend;
 
 })(this);
-
-
