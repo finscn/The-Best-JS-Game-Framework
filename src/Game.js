@@ -149,6 +149,9 @@
         },
         render: function(context, timeStep, now) {
 
+        },
+        handleInput: function(timeStep, now) {
+
         }
     };
 
