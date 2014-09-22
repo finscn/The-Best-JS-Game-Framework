@@ -75,6 +75,17 @@
             }
         },
 
+        pauseLoop: function() {
+            this.running = false;
+            if (this.loopId) {
+                clearTimeout(this.loopId);
+            }
+        },
+        resumeLoop: function() {
+            this.timer.last = Date.now();
+            this.run();
+        },
+
         run: function() {
             var now = this.timer.now = Date.now();
             var timeStep = now - this.timer.last;
@@ -85,7 +96,7 @@
                 this.update(timeStep, now);
                 this.render(timeStep, now);
             }
-            if (!this.running) {
+            if (!this.running && this.loopId) {
                 clearTimeout(this.loopId);
             }
         },
@@ -175,12 +186,13 @@
         cp.constructor = subclass;
         subclass.$super = sp;
         subclass.superclass = superclass || null;
-        subclass.extend = this.extend;
         return subclass;
     }
 
     function _extend(prototype) {
-        return ns.extend(prototype, this)
+        var subclass = ns.extend(prototype, this);
+        subclass.extend = this.extend;
+        return subclass;
     };
 
     Game.extend = _extend;
